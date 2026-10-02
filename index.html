@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Narrak｜花と手仕事を楽しむ、小さな暮らしのお店</title>
+<meta name="description" content="西宮市の小さな暮らしのお店 Narrak（ナーラック）。花と手仕事、ときどきcafe、ときどきworkshop。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Klee+One:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kraft:#dccfb8; --kraft2:#cfc0a5; --paper:#fffcf4; --ink:#3a2d24; --sub:#6d5b4c;
+  --mustard:#e4ac2c; --rose:#e48b97; --sage:#8ea585;
+  --demo:38px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--kraft);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:16px;line-height:1.85;letter-spacing:.04em;overflow-x:hidden}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.demo{background:var(--ink);color:#fff;font-size:12px;line-height:1.6;text-align:center;padding:8px 12px;min-height:var(--demo)}
+
+/* 机（クラフト紙） */
+.desk{position:relative;overflow:hidden;min-height:calc(100svh - var(--demo));display:flex;align-items:center;justify-content:center;
+  background:
+   radial-gradient(ellipse at 50% 45%,rgba(255,250,235,.55) 0%,rgba(255,250,235,0) 60%),
+   radial-gradient(ellipse at 50% 120%,rgba(90,65,40,.22) 0%,rgba(90,65,40,0) 55%),
+   var(--kraft);
+  touch-action:pan-y}
+.desk::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .36  0 0 0 0 .25  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.desk::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 120px rgba(80,55,30,.28)}
+
+/* 中央の文字 */
+.center{position:relative;z-index:6;text-align:center;padding:0 24px;max-width:760px;pointer-events:none}
+.center a,.center button{pointer-events:auto}
+.logo{width:min(620px,84vw);height:auto;margin:0 auto}
+.logo text{font-family:"Mrs Saint Delafield",cursive;font-size:190px;fill:transparent;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;stroke-dasharray:1900;stroke-dashoffset:1900}
+.draw .logo text{animation:draw 3.2s cubic-bezier(.5,.1,.3,1) .2s forwards,fillin 1.2s ease 2.8s forwards}
+.nodraw .logo text{stroke-dashoffset:0;fill:var(--ink);stroke-width:0}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillin{to{fill:var(--ink)}}
+.tag1{font-family:"Klee One","Zen Kaku Gothic New",serif;font-weight:600;font-size:clamp(17px,4.6vw,22px);line-height:1.8;letter-spacing:.1em;margin-top:2px}
+.tag2{font-size:13.5px;color:var(--sub);margin-top:6px;letter-spacing:.08em}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:16px 0 22px}
+.chip{font-family:"Klee One",serif;font-weight:600;font-size:13px;padding:3px 14px;border-radius:999px;background:rgba(255,252,244,.8);border:1.5px solid var(--ink);transform:rotate(var(--r,0deg))}
+.chip:nth-child(1){--r:-2deg;border-color:var(--rose)}
+.chip:nth-child(2){--r:1.5deg;border-color:var(--mustard)}
+.chip:nth-child(3){--r:-1deg;border-color:var(--sage)}
+.chip:nth-child(4){--r:2deg;border-color:var(--ink)}
+.appear{opacity:0;transform:translateY(10px)}
+.draw .appear{animation:ap .9s ease forwards;animation-delay:var(--d,2.4s)}
+.nodraw .appear{opacity:1;transform:none}
+@keyframes ap{to{opacity:1;transform:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 28px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.08em;border-radius:6px 14px 8px 14px;box-shadow:4px 5px 0 var(--mustard);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 7px 0 var(--mustard)}
+.btn:focus-visible{outline:3px solid var(--rose);outline-offset:4px}
+.btn::after{content:"→";font-size:17px}
+
+/* シール（切り抜き）：さわって動かせる */
+.st{position:absolute;z-index:3;left:var(--x);top:var(--y);width:var(--w);cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r,0deg));will-change:transform}
+.st.drag{cursor:grabbing;z-index:20}
+.st.drag .in{filter:drop-shadow(8px 12px 10px rgba(60,40,20,.35));transform:scale(1.07)}
+.st .in{display:block;transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s;filter:drop-shadow(3px 5px 4px rgba(60,40,20,.28));animation:fl var(--fd,7s) ease-in-out infinite;animation-delay:var(--fdl,0s)}
+.st img{width:100%;height:auto;pointer-events:none;-webkit-user-drag:none}
+@keyframes fl{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -7px;rotate:2.2deg}}
+.st.pop .in{animation:none;transform:scale(.94)}
+.s1{--x:4%;--y:9%;--w:min(19vw,270px);--r:-8deg;--fd:7s}
+.s2{--x:74%;--y:6%;--w:min(21vw,300px);--r:6deg;--fd:8s;--fdl:-2s}
+.s3{--x:14%;--y:68%;--w:min(11vw,150px);--r:-5deg;--fd:6.5s;--fdl:-1s}
+.s4{--x:72%;--y:66%;--w:min(21vw,300px);--r:4deg;--fd:7.5s;--fdl:-3s}
+.s5{--x:2%;--y:40%;--w:min(15vw,210px);--r:7deg;--fd:7s;--fdl:-4s}
+.s6{--x:84%;--y:38%;--w:min(14vw,200px);--r:-6deg;--fd:8.5s;--fdl:-5s}
+
+/* OPEN CALENDAR（手書き風のメモ） */
+.cal{position:absolute;z-index:4;left:50%;bottom:4%;width:190px;margin-left:-95px;background:var(--paper);padding:12px 12px 10px;border-radius:3px;box-shadow:3px 5px 10px rgba(60,40,20,.3);rotate:-3deg;text-decoration:none;color:var(--ink)}
+.cal::before{content:"";position:absolute;left:50%;top:-11px;width:70px;height:22px;margin-left:-35px;background:rgba(228,139,151,.7);transform:rotate(2deg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.cal b{display:block;font-family:"Mrs Saint Delafield",cursive;font-size:26px;line-height:1;font-weight:400}
+.cal small{display:block;font-size:10.5px;color:var(--sub);margin-bottom:6px;font-family:"Klee One",serif}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-family:"Klee One",serif;font-size:10px;line-height:1.6}
+.grid span{border-radius:50%}
+.grid .o{box-shadow:inset 0 0 0 1.5px var(--rose);color:var(--ink);font-weight:600}
+.grid .w{color:var(--sub);opacity:.5}
+.cal em{display:block;margin-top:6px;font-style:normal;font-size:10px;color:var(--sub);font-family:"Klee One",serif}
+.hint{position:absolute;z-index:7;left:50%;top:16px;transform:translateX(-50%) rotate(-1.5deg);font-family:"Klee One",serif;font-weight:600;font-size:13px;background:var(--paper);padding:2px 14px;border-radius:999px;box-shadow:2px 3px 6px rgba(60,40,20,.2);white-space:nowrap;transition:opacity .6s}
+.hint.gone{opacity:0;pointer-events:none}
+.ai{position:absolute;z-index:7;left:14px;bottom:10px;font-size:11px;color:#5d4c3d;background:rgba(255,252,244,.85);padding:2px 10px;border-radius:999px}
+
+.btn .short{display:none}
+/* スマホ：机の上のまま一画面に収める */
+@media(max-width:700px){
+  .desk{padding:30px 0 24px;min-height:calc(100svh - var(--demo))}
+  .center{padding:0 16px}
+  .logo{width:72vw}
+  .tag1{font-size:16.5px}
+  .tag2{display:none}
+  .chips{margin:10px 0 16px;gap:6px}
+  .chip{font-size:11.5px;padding:1px 10px}
+  .btn .full{display:none}.btn .short{display:inline}
+  .btn{min-height:50px;padding:10px 24px}
+  .s1{--x:-6%;--y:3%;--w:34vw}
+  .s2{--x:70%;--y:4%;--w:38vw}
+  .s5{--x:-5%;--y:41%;--w:24vw}
+  .s6{--x:79%;--y:40%;--w:22vw}
+  .s3{--x:40%;--y:84%;--w:14vw}
+  .s4{--x:64%;--y:77%;--w:38vw}
+  .cal{left:5%;bottom:2%;margin-left:0;width:108px;padding:8px 7px 7px}
+  .cal b{font-size:19px}
+  .cal small{font-size:8.5px;margin-bottom:4px}
+  .grid{font-size:7.5px;line-height:1.5}
+  .cal em{display:none}
+  .hint{top:8px;font-size:12px}
+  .ai{display:none}
+}
+.foot{padding:14px 24px 22px;text-align:center;font-size:12px;color:#5d4c3d;background:var(--kraft2)}
+.foot p+p{margin-top:4px}
+
+@media(prefers-reduced-motion:reduce){
+  .st .in{animation:none}
+  .appear{opacity:1;transform:none;animation:none}
+  .logo text{animation:none;stroke-dashoffset:0;fill:var(--ink);stroke-width:0}
+}
+</style>
+</head>
+<body>
+<div class="demo">これはNarrak様向けに作ったデモ（トップページのみ・非公開の見本）です。内容はInstagramの公開情報をもとにしています。</div>
+
+<main>
+<section class="desk" id="desk" aria-label="Narrak トップ">
+  <p class="hint" id="hint">シールをさわって、動かせます</p>
+
+  <figure class="st s1" data-depth="14"><img class="in" src="assets/o1.png" alt=""></figure>
+  <figure class="st s2" data-depth="-10"><img class="in" src="assets/o2.png" alt=""></figure>
+  <figure class="st s3" data-depth="18"><img class="in" src="assets/o3.png" alt=""></figure>
+  <figure class="st s4" data-depth="-14"><img class="in" src="assets/o4.png" alt=""></figure>
+  <figure class="st s5" data-depth="10"><img class="in" src="assets/o5.png" alt=""></figure>
+  <figure class="st s6" data-depth="-16"><img class="in" src="assets/o6.png" alt=""></figure>
+
+  <div class="center">
+    <h1 aria-label="Narrak（ナーラック）">
+      <svg class="logo" viewBox="0 0 700 230" aria-hidden="true"><text x="350" y="165" text-anchor="middle">Narrak</text></svg>
+    </h1>
+    <p class="tag1 appear" style="--d:2.4s">花と手仕事を楽しむ、<br>小さな暮らしのお店。</p>
+    <p class="tag2 appear" style="--d:2.7s">西宮市｜ときどきcafe、ときどきworkshop</p>
+    <div class="chips appear" style="--d:3s"><span class="chip">花</span><span class="chip">手仕事</span><span class="chip">ときどきcafe</span><span class="chip">ときどきworkshop</span></div>
+    <a class="btn appear" style="--d:3.3s" id="cta" href="https://www.instagram.com/narrak.narrak/" target="_blank" rel="noopener"><span class="full">営業日・ワークショップを見る</span><span class="short">営業日を見る</span></a>
+  </div>
+
+  <a class="cal appear" style="--d:3.6s" href="https://www.instagram.com/narrak.narrak/" target="_blank" rel="noopener" aria-label="営業カレンダー（Instagramで最新を見る）">
+    <b>Open Calendar</b>
+    <small>10月（※日付は見本です）</small>
+    <div class="grid" aria-hidden="true" id="grid"></div>
+    <em>最新はInstagramで</em>
+  </a>
+  <p class="ai">※ 雑貨の画像はイメージ（AI生成）です</p>
+</section>
+</main>
+<div class="foot">
+  <p>このデモはトップページのみです。営業日・場所・商品・ワークショップの内容などは、確認のうえ掲載します。</p>
+  <p>雑貨の画像はAI生成のイメージです。店・代表者のInstagramの写真は使用していません。</p>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var desk=document.getElementById("desk");
+
+  /* ロゴを手書きのように描く（フォント読み込み後に開始。表示されない環境・動きを減らす設定では最初から表示） */
+  var go=function(){desk.classList.add(reduce||document.visibilityState!=="visible"?"nodraw":"draw")};
+  var started=false;var start=function(){if(started)return;started=true;go()};
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(start);setTimeout(start,1800)}else{start()}
+
+  /* 見本の営業カレンダー（日付は仮） */
+  var g=document.getElementById("grid"),open={3:1,4:1,10:1,11:1,17:1,18:1,24:1,25:1};
+  var wk=["日","月","火","水","木","金","土"],h="";
+  wk.forEach(function(d){h+="<span class='w'>"+d+"</span>"});
+  for(var i=0;i<3;i++)h+="<span></span>";  /* 10月1日は水曜（見本） */
+  for(var d=1;d<=31;d++)h+="<span"+(open[d]?" class='o'":"")+">"+d+"</span>";
+  g.innerHTML=h;
+
+  /* シールをドラッグで動かす */
+  var hint=document.getElementById("hint"),moved=false;
+  [].slice.call(desk.querySelectorAll(".st")).forEach(function(el){
+    var sx=0,sy=0,bx=0,by=0,id=null;
+    el.addEventListener("pointerdown",function(e){
+      id=e.pointerId;el.setPointerCapture(id);el.classList.add("drag");
+      bx=parseFloat(getComputedStyle(el).getPropertyValue("--dx"))||0;
+      by=parseFloat(getComputedStyle(el).getPropertyValue("--dy"))||0;
+      sx=e.clientX;sy=e.clientY;e.preventDefault();
+    });
+    el.addEventListener("pointermove",function(e){
+      if(id!==e.pointerId)return;
+      el.style.setProperty("--dx",(bx+e.clientX-sx)+"px");
+      el.style.setProperty("--dy",(by+e.clientY-sy)+"px");
+      if(!moved){moved=true;hint.classList.add("gone")}
+    });
+    var up=function(e){
+      if(id!==e.pointerId)return;
+      id=null;el.classList.remove("drag");el.classList.add("pop");
+      setTimeout(function(){el.classList.remove("pop")},320);
+    };
+    el.addEventListener("pointerup",up);el.addEventListener("pointercancel",up);
+  });
+  setTimeout(function(){hint.classList.add("gone")},12000);
+
+  /* マウスの動きに合わせて、シールが少しずつ奥行きをつけて動く（PCのみ） */
+  if(!reduce&&window.matchMedia&&matchMedia("(hover:hover)").matches){
+    var ins=[].slice.call(desk.querySelectorAll(".st")),raf=0,mx=0,my=0;
+    desk.addEventListener("pointermove",function(e){
+      if(e.pointerType!=="mouse")return;
+      var r=desk.getBoundingClientRect();
+      mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5;
+      if(!raf)raf=requestAnimationFrame(function(){
+        raf=0;
+        ins.forEach(function(el){
+          var d=parseFloat(el.getAttribute("data-depth"))||0;
+          if(!el.classList.contains("drag"))el.firstElementChild.style.marginLeft=(mx*d)+"px",el.firstElementChild.style.marginTop=(my*d)+"px";
+        });
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
